@@ -1,15 +1,20 @@
 import Category from "./components/Category";
 import Pages from "./pages/Pages";
+import {BrowserRouter} from 'react-router-dom'
+import Search from "./components/Search";
 
 function App() {
   return (
     <div className="App">
-      <Category />
-      <Pages />
+      <BrowserRouter>
+        <Search />
+        <Category />
+        <Pages />
+      </BrowserRouter>
     </div>
   );
 }
 
 export default App;
 
-//vídeo em 01:06:00
+//vídeo em 01:44:44
