@@ -3,7 +3,7 @@ import './modalStyle.css'
 import {useState} from 'react'
 
 type ModalType = {
-    modalData: any;
+    modalData: any[];
     show:boolean
     onClose:React.MouseEventHandler<HTMLButtonElement | HTMLDivElement>
 }
@@ -14,13 +14,13 @@ function Modal(props:ModalType) {
     const [bairro, setBairro] = useState('')
     const [localidade, setLocalidade] = useState('')
     const [price, setPrice] = useState(0)
-
+    //INSERIR ESSES DADOS NUM OBJETO USANDO APENAS 1 SETSTATE
     if (!props.show){
         return null
     }
     const handleClose = ()=>{
-        // props.onClose
-        console.log('sair')
+        //envia tudo para o backend
+        //props.onClose
     }
     const getCepData = async (cep:string) =>{
         let numCep:number = Number(cep.replace(/[^0-9]/g, ''));
@@ -33,10 +33,8 @@ function Modal(props:ModalType) {
             setLocalidade(data.localidade)
             setPrice(10);
         }else{
-            console.log('endereço não encontrado')
             setPrice(0);
         }
-       
       }
   return (
     <div className='modal' onClick={props.onClose} >
@@ -45,12 +43,18 @@ function Modal(props:ModalType) {
                 <h2 className="modal-title">Dados para entrega</h2>
             </div>
             <div className="modal-body">
-                <img src={props.modalData.image?props.modalData.image:null} />
-                <h3>{props.modalData.title?props.modalData.title:''}</h3>
+                {props.modalData?.map(item => {
+                    return (
+                        <div>
+                            <img src={item.image?item.image:null} />
+                            <h3>{item.title?item.title:''}</h3>
+                        </div>
+                    )
+                })}
                 <h3>Entrega: R${price}</h3>
             </div>
             <div className="modal-footer">
-                <input type="text" placeholder='CEP' name='cep' defaultValue={cepNumber} onChange={(e) => getCepData(e.target.value)} autoFocus/>
+                <input type="text" placeholder='CEP' name='cep' defaultValue={cepNumber} onChange={(e) => getCepData(e.target.value)} maxLength={9} autoFocus/>
                 <input type="text" placeholder='Nome da rua' value={logradouro} disabled />
                 <input type="text" placeholder='Bairro' value={bairro} disabled />
                 <input type="text" placeholder='Cidade' value={localidade} disabled />

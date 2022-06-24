@@ -11,7 +11,11 @@ const cartImg = require('./img/cart.png')
 
 function App() {
   const [modalState, setModalState] = useState(false)
-  const [modalData, setModalData] = useState<any>('')
+  const [modalData, setModalData] = useState<any[]>([])
+  const handleModalData = (e:any)=>{
+    setModalData([...modalData, e])
+    alert('Item adicionado!')
+  }
   return (
     <div className="App">
       <BrowserRouter>
@@ -23,7 +27,7 @@ function App() {
         </Nav>
         <Search />
         <Category />
-        <Pages setModalData={setModalData} />
+        <Pages setModalData={handleModalData} />
       </BrowserRouter>
     </div>
   );

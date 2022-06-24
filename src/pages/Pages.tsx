@@ -5,9 +5,10 @@ import Searched from './Searched'
 import Recipe from './Recipe'
 import {Route, Routes, BrowserRouter, useLocation} from 'react-router-dom'
 import {AnimatePresence} from 'framer-motion'
+import Testes from './Testes';
 
 type PagesProps = {
-  setModalData: React.Dispatch<React.SetStateAction<any>>
+  setModalData: React.Dispatch<React.SetStateAction<any[]>>
 }
 
 function Pages(props: PagesProps) {
@@ -19,6 +20,7 @@ function Pages(props: PagesProps) {
           <Route path='/cuisine/:type' element={<Cuisine />} />
           <Route path='/searched/:search' element={<Searched />} />
           <Route path='/recipe/:name' element={<Recipe setModalData={props.setModalData} />} />
+          <Route path='/Testes' element={<Testes />} />
       </Routes>
     </AnimatePresence>
   )

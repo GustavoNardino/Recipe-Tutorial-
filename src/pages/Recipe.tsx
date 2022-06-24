@@ -3,9 +3,8 @@ import styled from 'styled-components'
 import {useParams} from 'react-router-dom'
 
 type RecipeType = {
-    setModalData: React.Dispatch<React.SetStateAction<any>>
+    setModalData: React.Dispatch<React.SetStateAction<any[]>>
 }
-
 
 function Recipe(props: RecipeType) {
     const [details, setDetails] = useState<any>({})
