@@ -1,6 +1,6 @@
 import Category from "./components/Category";
 import Pages from "./pages/Pages";
-import {BrowserRouter, Link, useNavigate} from 'react-router-dom'
+import {BrowserRouter, Link} from 'react-router-dom'
 import Search from "./components/Search";
 import Modal from './components/Modal'
 import styled from "styled-components";
@@ -11,11 +11,11 @@ const cartImg = require('./img/cart.png')
 
 function App() {
   const [modalState, setModalState] = useState(false)
-  
+  const [modalData, setModalData] = useState<any>('')
   return (
     <div className="App">
       <BrowserRouter>
-        <Modal onClose={() => setModalState(false)} show={modalState} />
+        <Modal modalData={modalData} onClose={() => setModalState(false)} show={modalState} />
         <Nav>
           <GiKnifeFork />
           <Logo to='/'>Deliciousss</Logo>
@@ -23,7 +23,7 @@ function App() {
         </Nav>
         <Search />
         <Category />
-        <Pages />
+        <Pages setModalData={setModalData} />
       </BrowserRouter>
     </div>
   );

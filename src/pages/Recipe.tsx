@@ -2,7 +2,12 @@ import React, {useEffect, useState} from 'react'
 import styled from 'styled-components'
 import {useParams} from 'react-router-dom'
 
-function Recipe() {
+type RecipeType = {
+    setModalData: React.Dispatch<React.SetStateAction<any>>
+}
+
+
+function Recipe(props: RecipeType) {
     const [details, setDetails] = useState<any>({})
     const [activeTab, setActiveTab] = useState('instructions')
     let params:any = useParams();
@@ -20,6 +25,7 @@ function Recipe() {
     return (
         <DetailWrapper>
             <div>
+                <AddCart onClick={() => props.setModalData(details)}>Adicionar ao carrinho</AddCart>
                 <h2>{details.title}</h2>
                 <img src={details.image} alt="" />
             </div>
@@ -44,9 +50,11 @@ function Recipe() {
     )
 }
 const DetailWrapper = styled.div`
-    margin-top: 5rem;
+    margin-top: 2rem;
     margin-bottom: 3rem;
     display: flex;
+    border: 1px solid #c3c3c3;
+    padding: 3rem;
     .active{
         background: linear-gradient(35deg, #494949, #313131);
         color: white;
@@ -72,9 +80,21 @@ const Button = styled.button`
     border: 2px solid black;
     margin-right: 2rem;
     font-weight: 600;
+    cursor: pointer;
 `
 const Info = styled.div`
     margin-left: 5rem;
 `
-
+  const AddCart = styled.div`
+    padding: 1rem;
+    cursor: pointer;
+    color: #313131;
+    background: #8fdd8f;
+    border: 1px solid black;
+    text-align: center;
+    font-weight: 600;
+    :hover{
+      opacity: 80%;
+    }
+`
 export default Recipe

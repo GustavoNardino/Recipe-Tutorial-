@@ -13,19 +13,24 @@
 .modal-content{
     z-index: 100000 !important;
     width: 50vw;
-    height: 80%;
     background-color: white;
 }
-.modal-header, .modal-footer{
-    padding: 10px;
+.modal-header{
+    justify-content: center;
+}
+.modal-header, .modal-body{
+    padding: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
 }
 .modal-title{
     margin: 0;
 }
-.modal-body{
+.modal-footer{
     padding: 1rem;
     border-top: 1px solid #eee;
     border-bottom: 1px solid #eee;
+    justify-content: space-between;
 }
 .modal-footer button{
     cursor: pointer;
@@ -36,13 +41,25 @@
     border-radius: 0.2rem;
     background-color: #3a3b40;
     color: white;
-    margin: 0.2rem;
+    /* margin: 0.2rem; */
+    margin: 1.5rem 3.5rem;
+    
 }
-.modal-body input{
+.modal-footer input{
     border-radius: 0.5rem;
     margin: 1.5rem 3.5rem;
     border:  transparent #3a3b40;
     height: 1.8rem;
     width: 200px;
     background-color: white;
+}
+.modal-body img{
+    width: 10rem;
+    margin-left: 2rem;
+}
+h2{
+    text-decoration: underline;    
+}
+h3{
+    margin-left: 2rem;
 }
